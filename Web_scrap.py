@@ -4,12 +4,12 @@ from lxml import etree, html
 import requests
 import csv
 
-def startpy():
-    source  = requests.get("https://venmurasu.in/mutharkanal/chapter-5").text
+def startpy(number):
+    source  = requests.get("https://venmurasu.in/mutharkanal/chapter-" + str(number)).text
 
     soup =  BeautifulSoup(source, 'lxml')
 
-    csv_file = open('chapter5.csv','w')
+    csv_file = open('chapter'+str(number) + '.csv','w')
     csv_writer = csv.writer(csv_file)
 
     word_list = []
@@ -27,4 +27,5 @@ def startpy():
 # def 
 
 if __name__ == "__main__":
-    startpy()
+    for num in range(1,6):
+        startpy(num)
